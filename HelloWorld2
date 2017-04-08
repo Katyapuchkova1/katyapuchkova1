@@ -1,0 +1,27 @@
+#include"TXLib.h"
+    //{Прототипы
+    void GnRoad(int x, int y, int sizeX, int sizeY);//Прототип функции GnRoad
+    //}
+
+    int main()
+        {
+        txCreateWindow(1500, 900);
+        txSetFillColor(RGB(128, 128, 255));
+        txClear();
+        GnRoad(300, 500, 0, 0);//Вызов функции GnRoad
+        GnRoad(200, 500, 50, 50);//Вызов функции GnRoad
+        GnRoad(450, 500, 50, 50);//Вызв функции GnRoad
+        GnRoad(200, 500, 50, 50);//Вызов функции GnRoad
+        GnRoad(450, 500, 50, 50);//Вызв функции GnRoad
+        GnRoad(200, 500, 50, 50);//Вызов функции GnRoad
+        GnRoad(450, 500, 50, 50);//Вызв функции GnRoad
+
+        }
+
+void GnRoad(int x, int y, int sizeX, int sizeY)
+
+    {
+    txSetFillColor(RGB(255, 174, 201));
+    txSetColor(TX_NULL);
+    txRectangle(x, y+sizeY, x+100-sizeX, y+200-sizeY);
+    }
