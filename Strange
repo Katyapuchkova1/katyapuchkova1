@@ -1,0 +1,191 @@
+#include"TXLib.h"
+    //{Прототипы
+    void GnRoad(int x, int y, int sizeX, int sizeY, int c1, int c2, int c3);//Прототип функции GnRoad
+    void MoveTela();//Прототип функции MoveTela
+    void ChastRacketa(int x, int y, int c1, int c2, int c3);//Прототип функции ChastRacketa
+    void OgonRaketa(int x, int y);//Прототип функции Ogon Raketa
+    void Okna(int x, int y, int c1, int c2, int c3);//Прототип функции Okna
+    void MoveStolbc();//Прототип функции MoveStolbc
+    //}
+
+    int main()
+
+        {
+        txCreateWindow(1500, 900);
+        txSetFillColor(RGB(128, 128, 255));
+        txClear();
+        MoveStolbc();//MoveStolbc
+        MoveTela();//Вызов функции MoveTela
+        GnRoad(300, 500, 0, 0, 0, 0, 0);//Вызов функции GnRoad
+        GnRoad(200, 500, 50, 50, 0, 0, 0);//Вызов функции GnRoad
+        GnRoad(450, 500, 50, 50, 0, 0, 0);//Вызв функции GnRoad
+        GnRoad(200, 500, 50, 50, 0, 0, 0);//Вызов функции GnRoad
+        GnRoad(450, 500, 50, 50, 0, 0, 0);//Вызв функции GnRoad
+        GnRoad(200, 500, 50, 50, 0, 0, 0);//Вызов функции GnRoad
+        GnRoad(450, 500, 50, 50, 0, 0, 0);//Вызв функции GnRoad
+        }
+
+void GnRoad(int x, int y, int sizeX, int sizeY, int c1, int c2, int c3)
+
+    {
+    txSetFillColor(RGB(c1+255, c2+174, c3+201));
+    txSetColor(TX_NULL);
+    txRectangle(x, y+sizeY, x+100-sizeX, y+200-sizeY);
+    }
+
+void MoveTela()
+
+    {
+    int t = 3;
+    int t1 = 3;
+    while (t <= 1000)
+        {
+        txSetFillColor(RGB(128, 128, 255));
+        txClear();
+        OgonRaketa(300, 700 - t1*2);
+        ChastRacketa(300, 500 - t1*2, 0+t*3, 0+t*2, 0+t*4);//Вызов функции ChastRacketa
+        GnRoad(300, 500 - t1*2, 0, 0, 0+t*4, 0+t*2, 0+t*5);//Вызов функции GnRoad
+        Okna(300, 500 - t1*2, 0+t*5, 0+t*3, 0+t*6);//Вызов функции Okna
+        Okna(300, 580 - t1*2, 0+t*4, 0+t*2, 0+t*7);//Вызов функции Okna
+        GnRoad(200, 500 + t1*2, 50, 50, 0+t*2, 0+t*5, 0+t*4);//Вызов функции GnRoad
+        GnRoad(450, 500 + t1*2, 50, 50, 0+t*3, 0+t*2, 0+t*2);//Вызв функции GnRoad
+        GnRoad(200, 500 + t1*2, 50, 50, 0+t*1, 0+t*7, 0+t*3);//Вызов функции GnRoad
+        GnRoad(450, 500 + t1*2, 50, 50, 0+t*5, 0+t*3, 0+t*5);//Вызв функции GnRoad
+        GnRoad(200, 500 + t1*2, 50, 50, 0+t*6, 0+t*2, 0+t*2);//Вызов функции GnRoad
+        GnRoad(450, 500 + t1*2, 50, 50, 0+t*4, 0+t*4, 0+t*6);//Вызв функции GnRoad
+
+
+        if (GetAsyncKeyState (VK_SPACE))
+            {
+            t1++;
+            };
+        if (GetAsyncKeyState (VK_LEFT))
+            {
+            t++;
+            };
+        txSleep(10);
+        }
+    }
+
+void ChastRacketa(int x, int y, int c1, int c2, int c3)
+
+    {
+    txSetFillColor(RGB(c1+255, c2+174, c3+201));
+    txSetColor(TX_NULL);
+    POINT cepka[3] = {{x, y}, {x+50, y-100}, {x+99, y}};
+    txPolygon (cepka, 3);
+    }
+
+void OgonRaketa(int x, int y)
+
+    {
+    txSetFillColor(RGB(255, 255, 0));
+    txSetColor(TX_NULL);
+    POINT ogon[9] = {{x, y}, {x-30, y+40}, {x, y+15}, {x+20, y+30}, {x+40, y+10}, {x+60, y+30}, {x+95, y+10}, {x+120, y+40}, {x+100, y}} ;
+    txPolygon (ogon, 9);
+    }
+
+void Okna(int x, int y, int c1, int c2, int c3)
+
+    {
+    txSetFillColor(RGB(c1, c1+162, c3+232));
+    txSetColor(TX_NULL);
+    txCircle(x+50, y+40, 30);
+    }
+
+void MoveStolbc()
+
+    {
+    int x = 200, y = 500, vx = 25, vy = 4;
+    int x1 = 450, y1 = 500, vx1 = -100, vy1 = -4;
+    int dt = 2;
+
+    while ( !GetAsyncKeyState (VK_RIGHT))
+
+        {
+        txSetFillColor(RGB(128, 128, 255));
+        txClear();
+        GnRoad(x, y, 50, 50, 0, 0, 0);//Вызов функции GnRoad
+        GnRoad(x1, y1, 50, 50, 0, 0, 0);//Вызв функции GnRoad
+
+        x = x + vx*dt;
+        y = y + vy*dt;
+        x1 = x1 + vx1*dt;
+        y1 = y1 + vy1*dt;
+
+        if (x >= 1500)
+
+            {
+            vx = -vx;
+            x = 1500;
+            };
+
+        if (y >= 900)
+
+            {
+            vy = -vy;
+            y = 900;
+            };
+
+        if (x1 >= 1500)
+
+            {
+            vx1 = -vx1;
+            x1 = 1500;
+            };
+
+        if (y1 >= 900)
+
+            {
+            vy1 = -vy1;
+            y1 = 900;
+            };
+
+        if (x <= 0)
+
+            {
+            vx1 = -vx1;
+            x1 = 0;
+            };
+
+        if (y <= 0)
+
+            {
+            vy1 = -vy1;
+            y1 = 0;
+            };
+
+        if (x1 <= 250)
+
+            {
+            vx1 = -vx1;
+            x1 = 250;
+            };
+
+        if (x >= 250)
+
+            {
+            vx = - vx;
+            x = 250;
+            };
+
+        if (x1 <= 0)
+
+            {
+            vx1 = -vx1;
+            x1 = 0;
+            };
+
+        if (y1 <= 0)
+
+
+            {
+            vy1 = -vy1;
+            y1 = 0;
+            };
+
+        txSleep(1);
+
+        }
+    }
+
