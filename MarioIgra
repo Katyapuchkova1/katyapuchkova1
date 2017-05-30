@@ -1,0 +1,190 @@
+#include"TXLib.h"
+
+    //{Prototipy
+    void Phon(int x, int y, HDC Mario);
+    void Prepyatstvie(int x, int y, HDC name);
+    void DvisheniyeMario();
+    void Mebel(int x, int y, int s, int l, HDC name);
+    //}
+
+
+
+    int main()
+
+        {
+        txCreateWindow(1500, 900);
+
+        DvisheniyeMario();
+
+        }
+
+    void Phon(int x, int y, HDC Mario)
+
+    {
+    txTransparentBlt (txDC(), x, y, 1500, 900, Mario, 0, 0);
+    }
+
+    void Mebel(int x, int y, int s , int l, HDC name)
+
+    {
+    txTransparentBlt (txDC(), x, y, s, l, name, 0, 0);
+    }
+
+    void Prepyatstvie(int x, int y, HDC name)
+
+    {
+    txTransparentBlt (txDC(), x, y, 50, 50, name, 0, 0);
+    }
+
+    void DvisheniyeMario()
+
+    {
+
+    int CurrentFrame = 1;
+    double vx = 5/10; int dt = 2;
+    int t = 0; int x = 200; int y = 750;
+    int t1 = 10; int t2 = 10;
+    HDC Mario1 = txLoadImage("Mario1.bmp");
+    HDC Mario2 = txLoadImage("Mario2.bmp");
+    HDC Mario3 = txLoadImage("Mario3.bmp");
+    HDC Mario4 = txLoadImage("Mario4.bmp");
+    HDC Mario5 = txLoadImage("Mario5.bmp");
+    HDC Mario6 = txLoadImage("Mario6.bmp");
+    HDC Piksel = txLoadImage("Piksel.bmp");
+    HDC Mainy = txLoadImage("Mainy.bmp");
+    HDC Decor = txLoadImage("Decor.bmp");
+    HDC Employers = txLoadImage("Employers.bmp");
+    HDC Corabok = txLoadImage("Corabok.bmp");
+    HDC Illuminaty = txLoadImage("illuminaty.bmp");
+    HDC Mario = txLoadImage("Mario.bmp");
+
+
+    while (!GetAsyncKeyState (VK_ESCAPE) && t >= 0 && t1 >= 0)
+
+        {
+        txClear();
+        Phon(0, 0, Mario);
+        Mebel (800 + t1 - t2, 400, 50, 50, Decor);
+        Mebel (1250 + t1 - t2, 225, 50, 50, Employers);
+        Mebel (300 + t1 - t2, 650, 50, 100, Corabok);
+        Mebel (800 + t1 - t2, 700, 50, 50, Illuminaty);
+
+        Prepyatstvie(300 + t1 - t2, 600, Piksel);
+        Prepyatstvie(350 + t1 - t2, 550, Piksel);
+        Prepyatstvie(400 + t1 - t2 , 500, Piksel);
+        Prepyatstvie(700 + t1 - t2, 350, Mainy);
+        Prepyatstvie(700 + t1 - t2, 300, Mainy);
+        Prepyatstvie(750 + t1 - t2, 250, Mainy);
+        Prepyatstvie(800 + t1 - t2, 200, Mainy);
+        Prepyatstvie(850 + t1 - t2, 200, Mainy);
+        Prepyatstvie(750 + t1 - t2, 400, Mainy);
+        Prepyatstvie(800 + t1 - t2, 450, Mainy);
+        Prepyatstvie(850 + t1 - t2, 450, Mainy);
+        Prepyatstvie(1050 + t1 - t2, 325, Mainy);
+        Prepyatstvie(1000 + t1 - t2, 325, Mainy);
+        Prepyatstvie(1100 + t1 - t2, 325, Mainy);
+        Prepyatstvie(1050 + t1 - t2, 275, Mainy);
+        Prepyatstvie(1050 + t1 - t2, 375, Mainy);
+
+        Prepyatstvie(1250 + t1 - t2, 325, Mainy);
+        Prepyatstvie(1200 + t1 - t2, 325, Mainy);
+        Prepyatstvie(1300 + t1 - t2, 325, Mainy);
+        Prepyatstvie(1250 + t1 - t2, 275, Mainy);
+        Prepyatstvie(1250 + t1 - t2, 375, Mainy);
+
+
+        CurrentFrame = CurrentFrame + vx*dt;
+
+        if (GetAsyncKeyState (VK_RIGHT))
+
+        {
+        t1*0;
+        t2++;
+        }
+
+        if (GetAsyncKeyState (VK_LEFT))
+
+        {
+        t2*0;
+        t1++;
+        }
+
+
+        if (GetAsyncKeyState (VK_RIGHT) && CurrentFrame >= 3)
+
+            {
+            CurrentFrame = CurrentFrame - 2;
+            }
+
+        if (GetAsyncKeyState (VK_LEFT) && CurrentFrame >=6)
+
+            {
+            CurrentFrame = CurrentFrame - 2;
+            }
+
+        if (!GetAsyncKeyState (VK_ESCAPE) && CurrentFrame <= 3 && CurrentFrame >=0 && !GetAsyncKeyState (VK_RIGHT) && !GetAsyncKeyState (VK_LEFT))
+
+            {
+            CurrentFrame = 1;
+            }
+
+        if (!GetAsyncKeyState (VK_ESCAPE) && CurrentFrame <= 6 && CurrentFrame >= 4 && !GetAsyncKeyState (VK_LEFT) && !GetAsyncKeyState (VK_RIGHT))
+
+            {
+            CurrentFrame = 4;
+            }
+
+
+        if (CurrentFrame = 1)
+
+            {
+            txTransparentBlt (txDC(), x, y, 40, 50, Mario1, 0, 0);
+            }
+
+        if (CurrentFrame = 2)
+
+            {
+            txTransparentBlt (txDC(), x, y, 30, 50, Mario2, 0, 0);
+            }
+
+        if (CurrentFrame = 3)
+
+            {
+            txTransparentBlt (txDC(), x, y, 30, 50, Mario3, 0, 0);
+            }
+
+        if (CurrentFrame = 4)
+
+            {
+            txTransparentBlt (txDC(), x, y, 30, 50, Mario4, 0, 0);
+            }
+
+        if (CurrentFrame = 5)
+
+            {
+            txTransparentBlt (txDC(), x, y, 30, 50, Mario5, 0, 0);
+            }
+
+        if (CurrentFrame = 6)
+
+            {
+            txTransparentBlt (txDC(), x, y, 30, 50, Mario6, 0, 0);
+            }
+
+        if (GetAsyncKeyState (VK_LEFT))
+
+            {
+            x-t;
+            }
+
+        if (GetAsyncKeyState (VK_RIGHT))
+
+            {
+            x+t;
+            }
+
+         txSleep(1);
+
+        }
+
+    }
